@@ -59,6 +59,7 @@ open class SimpleEventEmitter<Payload> : ISimpleEventEmitter<Payload> {
 
     /** Emit passing along an optional [payload]. */
     override fun emit(payload: Payload) {
+        // CopyOnWriteArrayList is thread-safe for iteration, no copy needed
         listeners.forEach { it(payload) }
     }
 
